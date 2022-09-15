@@ -43,7 +43,7 @@ async function fetchData(location){
     let data;
     
     try {
-        const fetching = await axios({ url: `http://127.0.0.1:23556/api/v1/${location}`, method: "get"})
+        const fetching = await axios({ url: `https://issuetracker2.herokuapp.com/api/v1/${location}`, method: "get"})
         if (fetching.status === 200){
             data = await fetching.data
         }

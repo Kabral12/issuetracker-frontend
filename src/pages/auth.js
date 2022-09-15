@@ -40,7 +40,7 @@ class Authentication extends React.Component{
                 "username": this.state.username, 
                 "userpass": this.state.userpass
             }
-            const loginRequest = await axios.post("http://127.0.0.1:23556/auth/login", data)
+            const loginRequest = await axios.post("https://issuetracker2.herokuapp.com/auth/login", data)
 
             if(loginRequest.status === 200){
                 const data = await loginRequest.data;
