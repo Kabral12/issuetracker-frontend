@@ -21,6 +21,9 @@ class AdminPage extends React.Component {
 
     componentDidMount(){
         persistUser(this.props)
+        this.handleDataFetch().then().catch(err=>{
+            console.log(err);
+        })
     }
 
     async handleDataFetch(){
