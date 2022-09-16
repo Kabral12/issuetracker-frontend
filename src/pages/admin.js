@@ -2,15 +2,17 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
-import { fetchData, persistUser } from "../utils/helperfunctions";
-import { logUser } from "../utils/reducers/usersSlice";
 import HeaderComponent from "../components/headercomponent";
-import { addProject } from "../utils/reducers/projectSlice";
 import SideBarComponent from "../components/sidebarcomponent";
 import SettingsComponent from "../components/settingscomponent";
 import IssuesDisplay from "../components/issuesdisplaycomponent";
 import ClientDisplay from "../components/clientsdisplaycomponent";
+import { fetchData, persistUser } from "../utils/helperfunctions";
 import ProjectDisplay from "../components/projectsdisplaycomponent";
+import { addProject } from "../utils/reducers/projectSlice";
+import { addClient } from "../utils/reducers/clientsSlice";
+import { addIssue } from "../utils/reducers/issuesSlice";
+import { logUser } from "../utils/reducers/usersSlice";
 
 
 class AdminPage extends React.Component {
@@ -21,15 +23,16 @@ class AdminPage extends React.Component {
 
     componentDidMount(){
         persistUser(this.props);
-        this.handleDataFetch().then().catch(err=>{
-            console.log(err);
-        })
     }
 
     async handleDataFetch(){
-        const newData = await fetchData("project");
-        console.log(newData.projects);
-        this.props.addProject(newData.projects);
+        const newProjects = await fetchData("project");
+        const newClients = await fetchData("client");
+        const newIssues = await fetchData("issue");
+
+        this.props.addIssue(newIssues.issues)
+        this.props.addClient(newClients.clients)
+        this.props.addProject(newProjects.projects);
     }
 
     render() {
@@ -54,7 +57,9 @@ class AdminPage extends React.Component {
 const mapDispatch = dispatch => {
     return {
         logUser: (data)=> dispatch(logUser(data)),
-        addProject: (data)=> dispatch(addProject(data))
+        addProject: (data)=> dispatch(addProject(data)),
+        addClient: (data)=> dispatch(addClient(data)),
+        addIssue: (data)=> dispatch(addIssue(data)),
     }
 }
 
