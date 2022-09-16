@@ -2,35 +2,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ToolBarComponent from "./toolbarcomponent";
-import { fetchData } from "../utils/helperfunctions";
-import {addProject} from "../utils/reducers/projectSlice";
 
 export default function ProjectDisplay() {
 
     const projects = useSelector(state=>state.projects)
-    const dispatch = useDispatch();
 
-    useEffect(()=>{
-        handleDataFetch().then().catch(err=>{
-            console.log(err);
-        })
-    }, [])
-
-    async function handleDataFetch(){
-        const allprojects = await fetchData('project');
-        allprojects.projects.forEach(project => {
-            if(projects.length > 0){
-                projects.filter( item => {
-                    if(item.id !== project.id){
-                        dispatch(addProject(project))
-                    }
-                })
-            }else{
-                dispatch(addProject(project))
-            }
-        });
-
-    }
 
     return (
         <div style={{ position: "relative", height: "calc( 100% - 64px )", overflow: "hidden" }} className="w-100 d-flex flex-column">
@@ -53,7 +29,9 @@ export default function ProjectDisplay() {
                                     <td>{project.id}</td>
                                     <td>{project.name}</td>
                                     <td>{project.type}</td>
-                                    <td>{project.avatar}</td>
+                                    <td>
+                                        <img style={{ width: "32px", height: "32px" }} src={project.avatar} alt="project" />
+                                    </td>
                                     <td></td>
                                 </tr>
                             })
