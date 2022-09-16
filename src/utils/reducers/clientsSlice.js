@@ -6,10 +6,10 @@ export const clientsSlice = createSlice({
     initialState : [],
     reducers: {
         addClient: (state, action) =>{
-            return [...state, ...{ id: action.payload.id, name: action.payload, 
+            const newclient = { id: action.payload.id, name: action.payload, 
                 project: action.payload.project, email: action.payload.email, 
                 organisation: action.payload.organisation, archived: action.payload.archived } 
-            ]
+            state.push(newclient);
         }
     }
 })

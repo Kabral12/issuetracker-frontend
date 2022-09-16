@@ -6,14 +6,15 @@ export const issuesSlice = createSlice({
     initialState : { data: [], formOn: false},
     reducers: {
         addIssue: (state, action) =>{
-            return [...state, ...{
+            const newissue = {
                 id: action.payload.id,
                 title: action.payload.title,
                 description: action.payload.description,
                 screenshot: action.payload.screenshot,
                 project: action.payload.project,
                 type: action.payload.type
-            }]
+            }
+            state.data.push(newissue)
         },
         toggleFormOn: (state, action)=>{
             state.formOn = !state.formOn
