@@ -20,8 +20,9 @@ export default function ProjectDisplay() {
         const allprojects = await fetchData('project');
         allprojects.projects.forEach(project => {
             projects.filter( item => {
-                item.id !== project.id ? dispatch(addProject(project)) : 
-                ''
+                if(item.id !== project.id){
+                    dispatch(addProject(project))
+                }
             })
         });
 
