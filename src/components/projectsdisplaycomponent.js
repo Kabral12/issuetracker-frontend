@@ -1,5 +1,5 @@
-import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import React from "react";
+import { useSelector } from "react-redux";
 
 import ToolBarComponent from "./toolbarcomponent";
 
@@ -30,8 +30,7 @@ export default function ProjectDisplay() {
                                     <td>{project.name}</td>
                                     <td>{project.type}</td>
                                     <td>
-                                        <img/>
-                                        {project.avatar}
+                                        <img src={project.avatar} alt="project image"/>
                                     </td>
                                     <td></td>
                                 </tr>

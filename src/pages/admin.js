@@ -28,7 +28,8 @@ class AdminPage extends React.Component {
 
     async handleDataFetch(){
         const newData = await fetchData("project");
-        this.props.addProject(newData);
+        console.log(newData.projects);
+        this.props.addProject(newData.projects);
     }
 
     render() {
