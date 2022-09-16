@@ -13,7 +13,7 @@ export default function NewClientForm({setClient}) {
         
         if (data.name && data.email && data.organisation){
             const formdata  = {client_mail: data.email, client_organ: data.organisation, project: data.project , password: newpass}
-            const newclient = await axios.post('http://127.0.0.1:23556/api/v1/client', formdata)
+            const newclient = await axios.post('https://issuetracker2.herokuapp.com/api/v1/client', formdata)
             if(newclient.status === 200){
                 setClient();
             }

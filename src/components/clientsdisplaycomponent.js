@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { fetchData } from "../utils/helperfunctions";
+import { addClient } from "../utils/reducers/clientsSlice";
 import NewClientForm from "./newclientformcomponent";
 
 import ToolBarComponent from "./toolbarcomponent";
@@ -24,6 +25,9 @@ export default function ClientDisplay() {
 
     async function handledata(){
         const clients = await fetchData('client');
+        clients.forEach(client => {
+            dispatch( addClient(client) );
+        });
     }
 
     return (

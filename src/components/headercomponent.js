@@ -16,7 +16,7 @@ export default function HeaderComponent() {
     }
 
     async function handlelogout(){
-        const logout = await axios.get("http://127.0.0.1:23556/auth/logout")
+        const logout = await axios.get("https://issuetracker2.herokuapp.com/auth/logout")
         if(logout.status === 200){
             const cookie = document.cookie.split('; ').find((row) => row.startsWith('user'));
             if(cookie){

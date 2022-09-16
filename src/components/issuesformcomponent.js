@@ -23,7 +23,7 @@ export default function IssueForm({setComplain}) {
                 }
             }
 
-            const sendIssue = await axios.post('http://127.0.0.1:23556/auth/login', {title: data.title, description: data.description, screenshot: screenshot})
+            const sendIssue = await axios.post('https://issuetracker2.herokuapp.com/api/v1/issue', {title: data.title, description: data.description, screenshot: screenshot})
 
             if (sendIssue.status == 200){
                 setComplain();
