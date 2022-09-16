@@ -21,9 +21,10 @@ class AdminPage extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         persistUser(this.props);
-    }
+        await this.handleDataFetch();
+;    }
 
     async handleDataFetch(){
         const newProjects = await fetchData("project");
