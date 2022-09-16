@@ -12,7 +12,7 @@ export default function ProjectDisplay() {
         <div style={{ position: "relative", height: "calc( 100% - 64px )", overflow: "hidden" }} className="w-100 d-flex flex-column">
             <ToolBarComponent />
             <div className="w-100 px-3">
-                <table className="w-100">
+                <table className="w-100" style={{ borderCollapse: "separate", borderSpacing: "0 1rem" }}>
                     <thead className="w-100">
                         <tr style={{ backgroundColor: "#dfd9e2", color: "#4c3853" }} >
                             <th className="py-2" style={{ width: "10%", paddingLeft: "16px" }}>id</th>
@@ -25,7 +25,7 @@ export default function ProjectDisplay() {
                     <tbody>
                         {
                             projects.map((project)=>{
-                                return <tr className="py-2 mb-2" key={project.id}>
+                                return <tr className="py-2" key={project.id}>
                                     <td className="ps-2" >{project.id}</td>
                                     <td className="text-center">{project.name}</td>
                                     <td className="text-center">{project.type}</td>
