@@ -18,7 +18,7 @@ export default function ProjectDisplay() {
 
     async function handleDataFetch(){
         const projects = await fetchData('project');
-        projects.forEach(project => {
+        projects.projects.forEach(project => {
             dispatch(addProject(project))
         });
 
