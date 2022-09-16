@@ -27,9 +27,9 @@ export default function ProjectDisplay() {
                             projects.map((project)=>{
                                 return <tr key={project.id}>
                                     <td>{project.id}</td>
-                                    <td>{project.name}</td>
-                                    <td>{project.type}</td>
-                                    <td>
+                                    <td className="text-center">{project.name}</td>
+                                    <td className="text-center">{project.type}</td>
+                                    <td className="text-center">
                                         <img style={{ width: "24px", height: "24px" }} src={project.avatar} alt="project image"/>
                                     </td>
                                     <td></td>
