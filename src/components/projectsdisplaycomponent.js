@@ -19,11 +19,15 @@ export default function ProjectDisplay() {
     async function handleDataFetch(){
         const allprojects = await fetchData('project');
         allprojects.projects.forEach(project => {
-            projects.filter( item => {
-                if(item.id !== project.id){
-                    dispatch(addProject(project))
-                }
-            })
+            if(projects.length > 0){
+                projects.filter( item => {
+                    if(item.id !== project.id){
+                        dispatch(addProject(project))
+                    }
+                })
+            }else{
+                dispatch(addProject(project))
+            }
         });
 
     }
