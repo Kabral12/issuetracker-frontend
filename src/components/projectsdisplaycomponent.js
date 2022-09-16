@@ -30,7 +30,8 @@ export default function ProjectDisplay() {
                                     <td>{project.name}</td>
                                     <td>{project.type}</td>
                                     <td>
-                                        <img style={{ width: "32px", height: "32px" }} src={project.avatar} alt="project" />
+                                        <img/>
+                                        {project.avatar}
                                     </td>
                                     <td></td>
                                 </tr>

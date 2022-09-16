@@ -2,9 +2,10 @@ import React from "react";
 import { connect } from "react-redux";
 import { Route, Routes } from "react-router-dom";
 
+import { fetchData, persistUser } from "../utils/helperfunctions";
 import { logUser } from "../utils/reducers/usersSlice";
-import { persistUser } from "../utils/helperfunctions";
 import HeaderComponent from "../components/headercomponent";
+import { addProject } from "../utils/reducers/projectSlice";
 import SideBarComponent from "../components/sidebarcomponent";
 import SettingsComponent from "../components/settingscomponent";
 import IssuesDisplay from "../components/issuesdisplaycomponent";
@@ -19,7 +20,15 @@ class AdminPage extends React.Component {
     }
 
     componentDidMount(){
-        persistUser(this.props)
+        persistUser(this.props);
+        this.handleDataFetch().then().catch(err=>{
+            console.log(err);
+        })
+    }
+
+    async handleDataFetch(){
+        const newData = await fetchData("project");
+        this.props.addProject(newData);
     }
 
     render() {
@@ -43,7 +52,8 @@ class AdminPage extends React.Component {
 
 const mapDispatch = dispatch => {
     return {
-        logUser: (data)=> dispatch(logUser(data))
+        logUser: (data)=> dispatch(logUser(data)),
+        addProject: (data)=> dispatch(addProject(data))
     }
 }
 

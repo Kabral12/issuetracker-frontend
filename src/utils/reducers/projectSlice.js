@@ -12,7 +12,7 @@ export const projectsSlice = createSlice({
                 type: action.payload.projectTypeKey,
                 avatar: Object.values(action.payload.avatarUrls)[0]
             }
-            state.push(newProject);
+            return [...state, ...newProject]
         }
     }
 })
