@@ -25,12 +25,12 @@ export default function ProjectDisplay() {
                     <tbody>
                         {
                             projects.map((project)=>{
-                                return <tr key={project.id}>
-                                    <td>{project.id}</td>
+                                return <tr className="py-2" key={project.id}>
+                                    <td className="pl-3" >{project.id}</td>
                                     <td className="text-center">{project.name}</td>
                                     <td className="text-center">{project.type}</td>
                                     <td className="text-center">
-                                        <img style={{ width: "24px", height: "24px" }} src={project.avatar} alt="project image"/>
+                                        <img style={{ width: "32px", height: "32px" }} src={project.avatar} alt="project image"/>
                                     </td>
                                     <td></td>
                                 </tr>
