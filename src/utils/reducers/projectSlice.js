@@ -6,7 +6,7 @@ export const projectsSlice = createSlice({
     initialState : [],
     reducers: {
         addProject: (state, action) =>{
-            [...state, ...{ id: action.payload.id, name: action.payload.name, type: action.payload.projectTypeKey, avatar: Object.values(action.payload.avatarUrls)[0]}]
+            return [...state, ...{ id: action.payload.id, name: action.payload.name, type: action.payload.projectTypeKey, avatar: Object.values(action.payload.avatarUrls)[0]}]
         }
     }
 })
