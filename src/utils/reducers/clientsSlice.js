@@ -8,7 +8,7 @@ export const clientsSlice = createSlice({
         addClient: (state, action) =>{
             return [...state, ...{ id: action.payload.id, name: action.payload, 
                 project: action.payload.project, email: action.payload.email, 
-                organisation: action.payload.organisation, archived: false } 
+                organisation: action.payload.organisation, archived: action.payload.archived } 
             ]
         }
     }
