@@ -1,15 +1,17 @@
 import React from "react";
 import { connect } from "react-redux";
-import { Routes, Route } from "react-router-dom";
+import { Route, Routes } from "react-router-dom";
 
+import { logUser } from "../utils/reducers/usersSlice";
 import HeaderComponent from "../components/headercomponent";
 import SideBarComponent from "../components/sidebarcomponent";
-import ClientDisplay from "../components/clientsdisplaycomponent";
-import ProjectDisplay from "../components/projectsdisplaycomponent";
-import { persistUser } from "../utils/helperfunctions";
-import { logUser } from "../utils/reducers/usersSlice";
 import SettingsComponent from "../components/settingscomponent";
 import IssuesDisplay from "../components/issuesdisplaycomponent";
+import { persistUser, fetchData } from "../utils/helperfunctions";
+import ClientDisplay from "../components/clientsdisplaycomponent";
+import ProjectDisplay from "../components/projectsdisplaycomponent";
+import { addProject } from "../utils/reducers/projectSlice";
+
 
 class AdminPage extends React.Component {
 
@@ -19,6 +21,14 @@ class AdminPage extends React.Component {
 
     componentDidMount(){
         persistUser(this.props)
+    }
+
+    async handleDataFetch(){
+        const projects = await fetchData('project');
+        projects.values.forEach(project => {
+            this.props.addProject(project)
+        });
+
     }
 
     render() {
@@ -42,7 +52,8 @@ class AdminPage extends React.Component {
 
 const mapDispatch = dispatch => {
     return {
-        logUser: (data)=> dispatch(logUser(data))
+        logUser: (data)=> dispatch(logUser(data)),
+        addProject: (data)=> dispatch(addProject(data))
     }
 }
 
