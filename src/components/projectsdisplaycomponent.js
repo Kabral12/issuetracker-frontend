@@ -25,8 +25,8 @@ export default function ProjectDisplay() {
                     <tbody>
                         {
                             projects.map((project)=>{
-                                return <tr className="py-2" key={project.id}>
-                                    <td className="pl-3" >{project.id}</td>
+                                return <tr className="py-2 mb-2" key={project.id}>
+                                    <td className="ps-2" >{project.id}</td>
                                     <td className="text-center">{project.name}</td>
                                     <td className="text-center">{project.type}</td>
                                     <td className="text-center">
