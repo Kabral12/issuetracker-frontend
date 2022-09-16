@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 
 import ToolBarComponent from "./toolbarcomponent";
 import { fetchData } from "../utils/helperfunctions";
-
+import {addProject} from "../utils/reducers/projectSlice";
 
 export default function ProjectDisplay() {
 
@@ -18,7 +18,9 @@ export default function ProjectDisplay() {
 
     async function handleDataFetch(){
         const projects = await fetchData('project');
-        console.log(projects);
+        projects.forEach(project => {
+            dispatch(addProject(project))
+        });
 
     }
 
