@@ -16,10 +16,10 @@ export default function ProjectDisplay() {
                     <thead className="w-100">
                         <tr style={{ backgroundColor: "#dfd9e2", color: "#4c3853" }} >
                             <th className="py-2" style={{ width: "10%", paddingLeft: "16px" }}>id</th>
-                            <th className="py-2" style={{ width: "20%", textAlign: "center" }}>name</th>
-                            <th className="py-2" style={{ width: "20%", textAlign: "center" }}>type</th>
-                            <th className="py-2" style={{ width: "30%", textAlign: "center" }}>avatar</th>
-                            <th className="py-2" style={{ width: "20%", textAlign: "right", paddingRight: "16px" }}>action</th>
+                            <th className="py-2" style={{ width: "30%", textAlign: "center" }}>name</th>
+                            <th className="py-2" style={{ width: "30%", textAlign: "center" }}>type</th>
+                            <th className="py-2" style={{ width: "15%", textAlign: "center" }}>avatar</th>
+                            <th className="py-2" style={{ width: "15%", textAlign: "right", paddingRight: "16px" }}>action</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -30,7 +30,7 @@ export default function ProjectDisplay() {
                                     <td>{project.name}</td>
                                     <td>{project.type}</td>
                                     <td>
-                                        <img src={project.avatar} alt="project image"/>
+                                        <img style={{ width: "24px", height: "24px" }} src={project.avatar} alt="project image"/>
                                     </td>
                                     <td></td>
                                 </tr>
