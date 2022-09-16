@@ -14,7 +14,7 @@ export default function ProjectDisplay() {
         handleDataFetch().then().catch(err=>{
             console.log(err);
         })
-    })
+    }, [])
 
     async function handleDataFetch(){
         const allprojects = await fetchData('project');
