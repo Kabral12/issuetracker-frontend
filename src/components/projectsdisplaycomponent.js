@@ -18,7 +18,7 @@ export default function ProjectDisplay() {
 
     async function handleDataFetch(){
         const projects = await fetchData('project');
-        console.log(projects.values);
+        console.log(projects);
 
     }
 
