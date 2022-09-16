@@ -1,12 +1,20 @@
 import React from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import ToolBarComponent from "./toolbarcomponent";
+import { fetchData } from "../utils/helperfunctions";
 
 
 export default function ProjectDisplay() {
 
     const projects = useSelector(state=>state.projects)
+    const dispatch = useDispatch();
+
+    async function handleDataFetch(){
+        const projects = await fetchData('project');
+        console.log(projects.values);
+
+    }
 
     return (
         <div style={{ position: "relative", height: "calc( 100% - 64px )", overflow: "hidden" }} className="w-100 d-flex flex-column">
