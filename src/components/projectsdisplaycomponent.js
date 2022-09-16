@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 import ToolBarComponent from "./toolbarcomponent";
@@ -9,6 +9,12 @@ export default function ProjectDisplay() {
 
     const projects = useSelector(state=>state.projects)
     const dispatch = useDispatch();
+
+    useEffect(()=>{
+        handleDataFetch().then().catch(err=>{
+            console.log(err);
+        })
+    })
 
     async function handleDataFetch(){
         const projects = await fetchData('project');
