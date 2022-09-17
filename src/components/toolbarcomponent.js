@@ -6,7 +6,7 @@ export default function ToolBarComponent({ setComplain, setClient }) {
 
     const usertype = useSelector((state)=> state.user.userType)
     const projects = useSelector(state=> state.projects)
-    const clients = useSelector(state=> state.clients)
+    const clients = useSelector(state=> state.client)
     const issues = useSelector(state=> state.issues.data)
 
     return (

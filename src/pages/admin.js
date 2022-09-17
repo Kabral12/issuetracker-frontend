@@ -36,9 +36,9 @@ class AdminPage extends React.Component {
         newIssues.issues.forEach(issue => {
             this.props.addIssue(issue)
         });
-        // newClients.clients.forEach(client =>{
-        //     this.props.addClient(client)
-        // })
+        newClients.clients.forEach(client =>{
+            this.props.addClient(client)
+        })
         newProjects.projects.forEach(project => {
             this.props.addProject(project);
         })
