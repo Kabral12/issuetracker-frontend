@@ -14,7 +14,7 @@ export default function ToolBarComponent({ setComplain, setClient }) {
             <div className="d-flex align-items-center py-1 mt-3">
                 <span className="d-flex px-3 py-1" style={{ border: "1px solid #4c3853", color: "#4c3853" }}>
                     Total: 
-                    <span>
+                    <span className="mb-2">
                         {
                             getLocation('dashboard') === "" | getLocation() === "clients" ? 
                             clients.length : getLocation() === "issues" ? 

@@ -31,12 +31,14 @@ class AdminPage extends React.Component {
         const newClients = await fetchData("client");
         const newIssues = await fetchData("issue");
 
+        console.log(newClients);
+
         newIssues.issues.forEach(issue => {
             this.props.addIssue(issue)
         });
-        newClients.clients.forEach(client =>{
-            this.props.addClient(client)
-        })
+        // newClients.clients.forEach(client =>{
+        //     this.props.addClient(client)
+        // })
         newProjects.projects.forEach(project => {
             this.props.addProject(project);
         })

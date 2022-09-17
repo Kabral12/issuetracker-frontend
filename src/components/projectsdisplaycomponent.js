@@ -30,7 +30,7 @@ export default function ProjectDisplay() {
                                     <td className="text-center">{project.name}</td>
                                     <td className="text-center">{project.type}</td>
                                     <td className="text-center">
-                                        <img style={{ width: "32px", height: "32px" }} src={project.avatar} alt="project image"/>
+                                        <img style={{ width: "32px", height: "32px" }} src={project.avatar} alt={project.name}/>
                                     </td>
                                     <td></td>
                                 </tr>
