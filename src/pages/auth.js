@@ -46,7 +46,7 @@ class Authentication extends React.Component{
                 const data = await loginRequest.data;
                 localStorage.setItem("user", JSON.stringify({usertype: data.user.usertype, userId: data.user._id.toString(), firstlogin: data.user.firstlogin}));
                 this.props.logUser({usertype: data.user.usertype, userId: data.user._id, firstlogin: data.user.firstlogin})
-                document.cookie = `user=${data.user._id.toString()}; path='/'; max-age=28800; SameSite=Strict; Secure`;
+                document.cookie = `user=${data.user._id.toString()}; path=/; max-age=28800; SameSite=Strict; Secure`;
                 window.location.reload(false)
             }
         }
