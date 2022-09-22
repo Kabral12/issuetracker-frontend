@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 
 import { removeUser } from "../utils/reducers/usersSlice";
@@ -15,9 +15,15 @@ export default function HeaderComponent() {
         return setMenu(!menu);
     }
 
+    function handleSettings(){
+        toggleMenu();
+        locate('/dashboard/settings')
+    }
+
     async function handlelogout(){
         const logout = await axios.get("https://issuetracker2.herokuapp.com/auth/logout")
         if(logout.status === 200){
+            toggleMenu();
             const cookie = document.cookie.split('; ').find((row) => row.startsWith('user'));
             if(cookie){
                 document.cookie = "user=''; expires=Fri, 31 Dec 1999 23:59:59 GMT; SameSite=None; Secure";
@@ -46,9 +52,9 @@ export default function HeaderComponent() {
                     <div style={{ position: "absolute", top: "54px", right: "16px", zIndex: "55", backgroundColor: "#fff", boxShadow: "0px 2px 12px  rgba(0,0,0,0.25" }}>
                         <ul className="px-2 pt-2" style={{ listStyle: "none"}}>
                             <li className="py-2 px-3" style={{ cursor: "pointer", borderBottom: "1px solid #d9d9d9" }}>
-                                <Link to="settings" style={{ textDecoration: "none", color: "#000" }}>
+                                <button onClick={()=> {handleSettings()}} style={{ textDecoration: "none", color: "#000" }}>
                                     settings
-                                </Link>
+                                </button>
                             </li>
                             <li className="py-2 px-3" style={{ cursor: "pointer" }}>
                                 <button onClick={()=>{handlelogout()}} style={{ backgroundColor: "transparent", border: "none" }}>logout</button>

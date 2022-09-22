@@ -1,18 +1,20 @@
-import { useState } from "react";
 import axios from "axios";
+import { useState } from "react";
+import { useSelector } from "react-redux";
 import { generatePassword } from "../utils/helperfunctions";
 
 
 export default function NewClientForm({setClient}) {
 
-    const [data, setData] = useState({name: "", email: "", organisation: ""})
+    const [data, setData] = useState({name: "", email: "", organisation: "", project: ""})
+    const projects = useSelector(state=>state.projects)
     
     async function handleSubmission(e){
         e.preventDefault();
         const newpass = generatePassword()
         
         if (data.name && data.email && data.organisation){
-            const formdata  = {client_mail: data.email, client_organ: data.organisation, project: data.project , password: newpass}
+            const formdata  = {email: data.email, organisation: data.organisation, project: data.project , password: newpass}
             const newclient = await axios.post('https://issuetracker2.herokuapp.com/api/v1/client', formdata)
             if(newclient.status === 200){
                 setClient();
@@ -36,6 +38,11 @@ export default function NewClientForm({setClient}) {
                 ...data,
                 organisation: e.target.value
             })
+        }else if (e.target.name === "project"){
+            setData({
+                ...data,
+                project: e.target.value
+            })
         }
     }
 
@@ -57,6 +64,16 @@ export default function NewClientForm({setClient}) {
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#organ">Organisation <span style={{ color: "#cb4e68" }}>*</span></label><br />
                                 <input className="w-50" type="text" name="client_organ" id="organ" value={data.organisation} onChange={(e)=>{ handleChange(e) }} required />
+                            </div>
+                            <div className="form-group w-100 mb-3">
+                                <label className="mb-2" htmlFor="#project">Project <span style={{ color: "#cb4e68" }}>*</span></label><br />
+                                <select name="project" id="project" value={data.project} onChange={(e)=>{ handleChange(e) }} required>
+                                    {
+                                        projects.map(project => {
+                                            return <option key={project.id} value={project.id} > {project.name} </option>
+                                        })
+                                    }
+                                </select>
                             </div>
                             <div className="form-group mt-3 d-flex flex-column gap-3 align-items-end">
                                 <input type="button" value="cancel" className="btn btn-outline-secondary px-5" onClick={ ()=> {setClient()}}  />
