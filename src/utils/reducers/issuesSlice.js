@@ -7,12 +7,12 @@ export const issuesSlice = createSlice({
     reducers: {
         addIssue: (state, action) =>{
             const newissue = {
-                id: action.payload._id,
-                title: action.payload.title,
-                description: action.payload.description,
-                screenshot: action.payload.screenshot,
-                project: action.payload.project,
-                type: action.payload.type
+                id: action.payload.fields.id,
+                project: action.payload.fields.project.name,
+                status: action.payload.fields.status.name,
+                reporter: action.payload.fields.displayName,
+                progress: action.payload.fields.progress,
+                type: action.payload.fields.issuetype.name
             }
             state.data.push(newissue)
         },
