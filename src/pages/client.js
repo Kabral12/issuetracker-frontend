@@ -5,9 +5,11 @@ import { Routes, Route } from "react-router-dom";
 import HeaderComponent from "../components/headercomponent";
 import SideBarComponent from "../components/sidebarcomponent";
 import { logUser } from "../utils/reducers/usersSlice";
-import { persistUser } from "../utils/helperfunctions";
+import { fetchData, persistUser } from "../utils/helperfunctions";
 import SettingsComponent from "../components/settingscomponent";
 import ClientIssues from "../components/issuescomponent";
+import { addIssue } from "../utils/reducers/issuesSlice";
+import { addIssueType } from "../utils/reducers/issuetypeSlice";
 
 
 class ClientPage extends React.Component {
@@ -15,8 +17,22 @@ class ClientPage extends React.Component {
         super(props);
     }
 
-    componentDidMount(){
+    async componentDidMount(){
         persistUser(this.props);
+        await this.handleDataFetch();
+    }
+
+    async handleDataFetch(){
+        const newIssues = await fetchData("issue");
+        const newIssueTypes = await fetchData("issue/type");
+
+        newIssues.issues.forEach(issue => {
+            this.props.addIssue({ _id: issue._id, title: issue.title, description: issue.description, screenshot: issue.screenshot })
+        });
+
+        newIssueTypes.issuetypes.forEach(issuetype =>{
+            this.props.addIssueType(issuetype)
+        })
     }
 
     render() {
@@ -43,7 +59,9 @@ const mapState = state => {
 
 const mapDispatch = dispatch => {
     return {
-        logUser: (data) => dispatch(logUser(data))
+        logUser: (data) => dispatch(logUser(data)),
+        addIssue: (data) => dispatch(addIssue(data)),
+        addIssueType: (data) => dispatch(addIssueType(data))
     }
 }
 

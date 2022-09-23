@@ -39,18 +39,16 @@ function isAuthenticated(){
 }
 
 async function fetchData(location){
-
-    let data;
     
     try {
         const fetching = await axios({ url: `https://issuetracker2.herokuapp.com/api/v1/${location}`, method: "get"})
         if (fetching.status === 200){
-            data = await fetching.data
+            const data = await fetching.data
+            return data
         }
     } catch (error) {
         console.error(error);
     }
-    return data
 }
 
 function generatePassword(){

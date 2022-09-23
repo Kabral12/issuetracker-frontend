@@ -6,15 +6,15 @@ import { generatePassword } from "../utils/helperfunctions";
 
 export default function NewClientForm({setClient}) {
 
-    const [data, setData] = useState({name: "", email: "", organisation: "", project: ""})
     const projects = useSelector(state=>state.projects)
+    const [data, setData] = useState({name: "", email: "", organisation: "", project: projects[0].id})
     
     async function handleSubmission(e){
         e.preventDefault();
         const newpass = generatePassword()
         
-        if (data.name && data.email && data.organisation){
-            const formdata  = {email: data.email, organisation: data.organisation, project: data.project , password: newpass}
+        if (data.name && data.email && data.organisation && data.project){
+            const formdata  = {name: data.name, email: data.email, organisation: data.organisation, project: data.project , password: newpass}
             const newclient = await axios.post('https://issuetracker2.herokuapp.com/api/v1/client', formdata)
             if(newclient.status === 200){
                 setClient();
@@ -67,7 +67,7 @@ export default function NewClientForm({setClient}) {
                             </div>
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#project">Project <span style={{ color: "#cb4e68" }}>*</span></label><br />
-                                <select name="project" id="project" value={data.project} onChange={(e)=>{ handleChange(e) }} required>
+                                <select className="form-select" name="project" id="project" value={data.project}  onChange={(e)=>{ handleChange(e) }} required>
                                     {
                                         projects.map(project => {
                                             return <option key={project.id} value={project.id} > {project.name} </option>

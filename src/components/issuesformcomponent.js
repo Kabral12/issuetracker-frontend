@@ -7,7 +7,7 @@ import { uploader } from "../utils/helperfunctions";
 // handle issues reported by client
 export default function IssueForm({setComplain}) {
     
-    const [data, setData] = useState({title: "", description: ""})
+    const [data, setData] = useState({title: "", description: "", type: ""})
     const [file, setFile] = useState()
 
     // send form data to backend
@@ -23,7 +23,7 @@ export default function IssueForm({setComplain}) {
                 }
             }
 
-            const sendIssue = await axios.post('https://issuetracker2.herokuapp.com/api/v1/issue', {title: data.title, description: data.description, screenshot: screenshot})
+            const sendIssue = await axios.post('https://issuetracker2.herokuapp.com/api/v1/issue', {title: data.title, description: data.description, screenshot: screenshot, type: data.type})
 
             if (sendIssue.status == 200){
                 setComplain();
@@ -62,7 +62,7 @@ export default function IssueForm({setComplain}) {
                             </div>
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#descr">Description <span style={{ color: "#cb4e68" }}>*</span></label><br />
-                                <textarea name="issue_descr" id="descr" cols="102" rows="12" value={data.description} onChange={(e)=> {handleChange(e)}} required></textarea>
+                                <textarea name="issue_descr" id="descr" cols="60" rows="12" value={data.description} onChange={(e)=> {handleChange(e)}} required></textarea>
                             </div>
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#screenshot">Add a screenshot</label><br />

@@ -52,7 +52,7 @@ export default function HeaderComponent() {
                     <div style={{ position: "absolute", top: "54px", right: "16px", zIndex: "55", backgroundColor: "#fff", boxShadow: "0px 2px 12px  rgba(0,0,0,0.25" }}>
                         <ul className="px-2 pt-2" style={{ listStyle: "none"}}>
                             <li className="py-2 px-3" style={{ cursor: "pointer", borderBottom: "1px solid #d9d9d9" }}>
-                                <button onClick={()=> {handleSettings()}} style={{ textDecoration: "none", color: "#000" }}>
+                                <button onClick={()=> {handleSettings()}} style={{ textDecoration: "none", color: "#000", backgroundColor: "transparent", border: "none", outline: "none" }}>
                                     settings
                                 </button>
                             </li>

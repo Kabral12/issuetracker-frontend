@@ -16,10 +16,13 @@ export const usersSlice = createSlice({
             state.userID = "";
             state.loggedIn = false;
             state.firstlogin = false;
+        },
+        toggleFirstLogin: (state, action) => {
+            state.firstlogin = false
         }
     }
 })
 
-export const { logUser, removeUser } = usersSlice.actions;
+export const { logUser, removeUser, toggleFirstLogin } = usersSlice.actions;
 
 export default usersSlice.reducer;

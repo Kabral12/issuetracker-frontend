@@ -1,9 +1,13 @@
 import React, { useState } from "react";
+import { useSelector } from "react-redux";
+import client from "../pages/client";
 
 import ToolBarComponent from "./toolbarcomponent";
 
 
 export default function ClientIssuesDisplay() {
+
+    const clientIssues = useSelector(state => state.issues.data );
 
     return (
         <div style={{ position: "relative", height: "calc( 100% - 64px )", overflow: "hidden" }} className="w-100 d-flex flex-column">
@@ -21,7 +25,20 @@ export default function ClientIssuesDisplay() {
                         </tr>
                     </thead>
                     <tbody>
-
+                        {
+                            clientIssues.length > 0 ?
+                            clientIssues.map(issue => {
+                                return <tr className="py-2" style={{ borderBottom: "1px solid #dccc" }} key={issue.id}>
+                                        <td className="ps-2" ><p style={{ textAlign: "left", padding: "4px 0" }}>{issue.id}</p></td>
+                                        <td className="ps-2" ><p style={{ textAlign: "center", padding: "4px 0" }}>{issue.title}</p></td>
+                                        <td className="text-center"><p style={{ textAlign: "left", padding: "4px 0" }}>{issue.project}</p></td>
+                                        <td className="text-center"><p style={{ textAlign: "left", padding: "4px 0" }}>{issue.reporter}</p></td>
+                                        <td className="text-center"><p style={{ textAlign: "left", padding: "4px 0" }}>{issue.type}</p></td>
+                                        <td></td>
+                                        </tr>
+                                
+                            }): null
+                        }
                     </tbody>
                 </table>
             </div>

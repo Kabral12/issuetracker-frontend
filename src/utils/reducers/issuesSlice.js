@@ -7,7 +7,7 @@ export const issuesSlice = createSlice({
     reducers: {
         addIssue: (state, action) =>{
             const newissue = {
-                id: action.payload.id,
+                id: action.payload._id,
                 title: action.payload.title,
                 description: action.payload.description,
                 screenshot: action.payload.screenshot,
@@ -18,13 +18,10 @@ export const issuesSlice = createSlice({
         },
         toggleFormOn: (state, action)=>{
             state.formOn = !state.formOn
-        },
-        filterIssues: (state, action)=>{
-            
         }
     }
 })
 
-export const { addIssue, toggleFormOn, filterIssues } = issuesSlice.actions;
+export const { addIssue, toggleFormOn } = issuesSlice.actions;
 
 export default issuesSlice.reducer;

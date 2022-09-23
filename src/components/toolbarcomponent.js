@@ -2,7 +2,7 @@ import { useSelector } from "react-redux";
 import { getLocation } from "../utils/helperfunctions";
 
 
-export default function ToolBarComponent({ setComplain, setClient }) {
+export default function ToolBarComponent({ setComplain, setClient, handleNewType }) {
 
     const usertype = useSelector((state)=> state.user.userType)
     const projects = useSelector(state=> state.projects)
@@ -16,23 +16,30 @@ export default function ToolBarComponent({ setComplain, setClient }) {
                     Total: 
                     <span className="ps-2">
                         {
-                            getLocation('dashboard') === "" | getLocation() === "clients" ? 
+                            usertype === "admin" ?
+                            (getLocation('dashboard') === "" | getLocation() === "clients" ? 
                             clients.length : getLocation() === "issues" ? 
                             issues.length : getLocation() === "projects" ? 
-                            projects.length : 0
+                            projects.length : 0):
+                            (getLocation('dashboard') === "" | getLocation() === "issues" ?
+                            issues.length : 0)
                         }
                     </span>
                 </span>
             </div>
             <div className="d-flex align-items-center py-1 mt-3">
                 {
-                    usertype === "admin"
-                }
-                {
-                    getLocation('dashboard') === "" | getLocation() === "clients" ? 
-                        <input type="button" value="Add Client" className="btn px-3" style={{ backgroundColor: "#cb4e68", color: "#fff" }} onClick={ ()=>{ setClient() } } />
-                    :
-                        null
+                    usertype === "client" ?
+                    <input type="button" value="Add Issue" className="btn px-3" style={{ backgroundColor: "#cb4e68", color: "#fff" }} onClick={ ()=>{ setComplain() } } />:
+                    
+                    (
+                        getLocation('dashboard') === "" | getLocation() === "clients" ? 
+                            <input type="button" value="Add Client" className="btn px-3" style={{ backgroundColor: "#cb4e68", color: "#fff" }} onClick={ ()=>{ setClient() } } />
+                        :
+                        getLocation() === "projects" ? 
+                            <input type="button" value="Add IssueType" className="btn px-3" style={{ backgroundColor: "#cb4e68", color: "#fff" }} onClick={ ()=>{ handleNewType() } } />
+                        : null
+                    )
                 }
             </div>
         </div>
