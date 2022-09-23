@@ -51,12 +51,12 @@ export default function IssuetypeForm({ handleNewType }) {
                             </div>
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#mail">Description <span style={{ color: "#cb4e68" }}>*</span></label><br />
-                                <textarea class="form-control" name="description" id="mail" cols="60" rows="3" value={data.description} onChange={(e)=>{ handleChange(e) }} ></textarea>
+                                <textarea className="form-control" name="description" id="mail" cols="60" rows="3" value={data.description} onChange={(e)=>{ handleChange(e) }} ></textarea>
                                 
                             </div>
                             <div className="form-group w-100 mb-3">
                                 <label className="mb-2" htmlFor="#organ">type <span style={{ color: "#cb4e68" }}>*</span></label><br />
-                                <select class="form-control" name="type" id="organ" value={data.type} onChange={(e)=>{ handleChange(e) }} >
+                                <select className="form-control" name="type" id="organ" value={data.type} onChange={(e)=>{ handleChange(e) }} >
                                     <option value="0" >Base</option>
                                     <option value="-1">Subtask</option>
                                 </select>
